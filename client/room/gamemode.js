@@ -4,13 +4,13 @@ import * as teams from './default_teams.js';
 import * as default_timer from './default_timer.js';
 
 // настройки
-const WaitingPlayersTime = 10;
-const BuildBaseTime = 30;
-const KnivesModeTime = 40;
+const WaitingPlayersTime = 1;
+const BuildBaseTime = 3;
+const KnivesModeTime = 4;
 const GameModeTime = default_timer.game_mode_length_seconds();
 const MockModeTime = 20;
 const EndOfMatchTime = 8;
-const VoteTime = 20;
+const VoteTime = 5;
 
 const KILL_SCORES = 5;
 const WINNER_SCORES = 10;
@@ -75,8 +75,8 @@ redTeam.Properties.Get(SCORES_PROP_NAME).Value = 0;
 blueTeam.Properties.Get(SCORES_PROP_NAME).Value = 0;
 
 // отображаем значения вверху экрана
-Ui.GetContext().TeamProp1.Value = { Team: "Blue", Prop: SCORES_PROP_NAME };
-Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: SCORES_PROP_NAME };
+Ui.GetContext().TeamProp1.Value = { Team: "CT", Prop: SCORES_PROP_NAME };
+Ui.GetContext().TeamProp2.Value = { Team: "TERRORISTS", Prop: SCORES_PROP_NAME };
 
 // при запросе смены команды игрока - добавляем его в запрашиваемую команду
 Teams.OnRequestJoinTeam.Add(function (player, team) { team.Add(player); });
@@ -205,9 +205,9 @@ function SetGameMode() {
 	var inventory = Inventory.GetContext();
 	if (GameMode.Parameters.GetBool("OnlyKnives")) {
 		inventory.MainInfinity.Value = true;
-		inventory.Secondary.Value = false;
+		inventory.Secondary.Value = true;
 		inventory.Melee.Value = true;
-		inventory.Explosive.Value = false;
+		inventory.Explosive.Value = true;
 		inventory.Build.Value = true;
 	} else {
 		inventory.MainInfinity.Value = true;
@@ -228,7 +228,7 @@ function SetEndOfMatch() {
 		// режим прикола вконце катки
 		SetMockMode(leaderboard[0].Team, leaderboard[1].Team);
 		// добавляем очки победившим
-		for (const win_player of leaderboard[0].Team.Players) {
+		for (const win_player of leaderboard[1].Team.Players) {
 			win_player.Properties.Scores.Value += WINNER_SCORES;
 		}
 	}
@@ -261,9 +261,9 @@ function SetMockMode(winners, loosers) {
 	// set winners
 	inventory = Inventory.GetContext(winners);
 	inventory.MainInfinity.Value = true;
-	inventory.SecondaryInfinity.Value = true;
-	inventory.ExplosiveInfinity.Value = true;
-	inventory.BuildInfinity.Value = true;
+	inventory.Secondary.Value = true;
+	inventory.Explosive.Value = false;
+	inventory.Build.Value = false;
 
 	// френдли фаер для победивших
 	//Damage.GetContext(winners).FriendlyFire.Value = true;
