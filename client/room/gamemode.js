@@ -210,11 +210,11 @@ function SetGameMode() {
 		inventory.Explosive.Value = false;
 		inventory.Build.Value = true;
 	} else {
-		inventory.Main.Value = true;
-		inventory.Secondary.Value = true;
+		inventory.MainInfinity.Value = true;
+		inventory.SecondaryInfinity.Value = true;
 		inventory.Melee.Value = true;
-		inventory.Explosive.Value = true;
-		inventory.Build.Value = true;
+		inventory.ExplosiveInfinity.Value = true;
+		inventory.BuildInfinity.Value = true;
 	}
 
 	mainTimer.Restart(GameModeTime);
