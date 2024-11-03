@@ -1,6 +1,6 @@
 {
-  "Name": "TDM",
-  "Description": "Team Death Match. Битва двух команд",
+  "Name": "TDM от BTZ",
+  "Description": "Team Death Match. Битва Синих и Красных",
   "StartClientVersion": 597,
   "MapFilter": {
     "IsBlank": false,
@@ -64,8 +64,8 @@
             "DisplayName": "GmParams/Length_L"
           },
           {
-            "Name": "Length_XL",
-            "DisplayName": "GmParams/Length_XL"
+            "Name": "Length_I",
+            "DisplayName": "GmParams/Length_I"
           }
         ]
       }
