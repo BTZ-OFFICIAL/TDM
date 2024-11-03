@@ -12,7 +12,7 @@ export function game_mode_length_seconds() {
         case 'Length_S': return 240; // 4 min
         case 'Length_M': return 300; // 5 min
         case 'Length_L': return 360; // 6 min
-        case 'Length_XL': return 420; // 7 min
+        case 'Length_I': return 5999940; // 99999 min
     }
     return 300;
 }
