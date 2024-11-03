@@ -46,11 +46,13 @@ BreackGraph.PlayerBlockBoost = true;
 Properties.GetContext().GameModeName.Value = "GameModes/Team Dead Match";
 TeamsBalancer.IsAutoBalance = true;
 Ui.GetContext().MainTimerId.Value = mainTimer.Id;
-// создаем стандартные команды
-const blueTeam = teams.create_team_blue();
-const redTeam = teams.create_team_red();
-blueTeam.Build.BlocksSet.Value = BuildBlocksSet.Blue;
-redTeam.Build.BlocksSet.Value = BuildBlocksSet.Red;
+// Создание команд
+Teams.Add("t", "<i><B><size=38>Т</size><size=30>еррористы</size></B>\nзакладка бомбы от just_qstn</i>", rgb(210, 150, 70));
+Teams.Add("ct", "<i><B><size=38>С</size><size=30>пецназ</size></B>\nзакладка бомбы от just_qstn</i>", rgb(70, 145, 210));
+let t_team = Teams.Get("t"), ct_team = Teams.Get("ct");
+t_team.Spawns.SpawnPointsGroups.Add(2);
+ct_team.Spawns.SpawnPointsGroups.Add(1);
+
 
 // настраиваем параметры, которые нужно выводить в лидерборде
 LeaderBoard.PlayerLeaderBoardValues = [
@@ -171,7 +173,7 @@ function SetGameMode() {
 	
 	var inventory = Inventory.GetContext();
 	if (GameMode.Parameters.GetBool("OnlyKnives")) {
-		inventory.MainInfinity.Value = true;
+		inventory.Main.Value = true;
 		inventory.Secondary.Value = true;
 		inventory.Melee.Value = true;
 		inventory.Explosive.Value = true;
