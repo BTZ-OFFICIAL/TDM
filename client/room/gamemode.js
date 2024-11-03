@@ -204,7 +204,7 @@ function SetGameMode() {
 
 	var inventory = Inventory.GetContext();
 	if (GameMode.Parameters.GetBool("OnlyKnives")) {
-		inventory.Main.Value = false;
+		inventory.MainInfinity.Value = true;
 		inventory.Secondary.Value = false;
 		inventory.Melee.Value = true;
 		inventory.Explosive.Value = false;
